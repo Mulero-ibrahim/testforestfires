@@ -1,6 +1,145 @@
-Simple way to remember:
-- git init → Start Git.
-- git branch → Set your branch name.
-- git add → Prepare files.
-- git commit → Save changes locally.
-- git push → Upload commits to GitHub.
+# GIT & GITHUB — STEP-BY-STEP NOTES
+
+## STEP 1: Create .gitignore (Before Git Add)
+
+Inside your project folder in VS Code, create a file called `.gitignore`.
+
+Paste:
+
+```gitignore
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.DS_Store
+.ipynb_checkpoints/
+```
+
+**Purpose:** Stops Git from uploading unnecessary files, virtual environments and secrets.
+
+## STEP 2: Initialise Git
+
+Open the VS Code terminal inside your project folder.
+
+```bash
+git init
+git branch -M main
+```
+
+- `git init` = Start Git.
+- `git branch -M main` = Set the main branch.
+
+## STEP 3: Add and Save Your Files
+
+```bash
+git status
+git add .
+git commit -m "Initial commit"
+```
+
+- `git status` = Check files.
+- `git add .` = Prepare files.
+- `git commit` = Save locally.
+
+## STEP 4: Create Your GitHub Repository
+
+1. Visit https://github.com/new
+2. Enter your repository name.
+3. Select Public or Private.
+4. Leave README and .gitignore unchecked.
+5. Click **Create repository**.
+6. Copy the HTTPS repository URL.
+
+## STEP 5: Connect Your Project to GitHub
+
+Replace USERNAME and REPOSITORY with your details.
+
+```bash
+git remote add origin https://github.com/USERNAME/REPOSITORY.git
+```
+
+Verify:
+
+```bash
+git remote -v
+```
+
+## STEP 6: Generate a GitHub Access Token
+
+This is needed when Git asks for a password during HTTPS authentication.
+
+1. Log in to GitHub.
+2. Visit https://github.com/settings/personal-access-tokens/new
+3. Enter a token name, e.g. `VS Code Git`.
+4. Select your account as **Resource owner**.
+5. Set an expiration date, e.g. 30 days.
+6. Under **Repository access**, choose **Only select repositories**.
+7. Select your newly created repository.
+8. Click **Add permissions → Repository permissions**.
+9. Find **Contents** and select **Read and write**.
+10. Click **Generate token**.
+11. Copy the token and store it securely.
+
+**Important:** Never share your token or paste it as a terminal command.
+
+## STEP 7: Upload Your Project
+
+Run:
+
+```bash
+git push -u origin main
+```
+
+When prompted:
+
+- **Username:** Enter your GitHub username.
+- **Password:** Paste your Personal Access Token, NOT your GitHub password.
+- Press Enter.
+
+The pasted token will be invisible in the terminal. This is normal.
+
+## STEP 8: Confirm Upload
+
+Open your GitHub repository in your browser.
+
+Your committed project files should now appear.
+
+---
+
+## WHEN UPDATING AN EXISTING PROJECT
+
+After editing or adding files, run:
+
+```bash
+git add .
+git commit -m "Updated project"
+git push origin main
+```
+
+You do not need to repeat `git init`, create a repository, or reconnect your remote.
+
+---
+
+## USEFUL COMMANDS
+
+| Command | Purpose |
+|---|---|
+| `git status` | Check changes |
+| `git remote -v` | Check GitHub connection |
+| `git add .` | Prepare changes |
+| `git commit -m "message"` | Save locally |
+| `git push origin main` | Upload changes |
+| `git pull origin main` | Get changes from GitHub |
+
+## EASY WAY TO REMEMBER
+
+**For a new project:**
+
+.gitignore → INIT → ADD → COMMIT → CREATE REPO → CONNECT → TOKEN → PUSH
+
+**For an existing project:**
+
+ADD → COMMIT → PUSH
+
+**Security reminder:** If a token is accidentally exposed, revoke it immediately in GitHub settings. `.gitignore` does not remove files already committed to Git.
