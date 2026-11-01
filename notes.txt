@@ -1,0 +1,6 @@
+Simple way to remember:
+- git init → Start Git.
+- git branch → Set your branch name.
+- git add → Prepare files.
+- git commit → Save changes locally.
+- git push → Upload commits to GitHub.
